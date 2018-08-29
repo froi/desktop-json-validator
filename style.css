@@ -1,0 +1,24 @@
+.form-container {
+    height: 100px;
+    background-color: #323a45;
+    position: fixed;
+    top: 0;
+    z-index: 100;
+}
+.form-container div.row {
+    height: inherit;
+}
+.data-container {
+    margin-top: 110px;
+}
+.get-json-btn {
+    background-color: #23C0BA !important;
+    border: 1px solid #23C0BA;
+    font-weight: bold;
+}
+.error-item span {
+    font-weight: bold;
+}
+ul {
+    list-style: none;
+}

@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <link rel="stylesheet" href="node_modules/bootstrap/dist/css/bootstrap.min.css">
+  <link rel="stylesheet" href="style.css">
+  <title>Electron APP</title>
+</head>
+<body>
+  <div class="container-fluid form-container">
+    <div class="row align-items-center">
+      <div class="col">
+        <div class="input-group">
+          <input type="text" class="form-control" id="json-url" placeholder="URL to code.json"/>
+          <div class="input-group-append">
+            <button id="get-json-btn" type="button" class="btn btn-outline-secondary get-json-btn">Fetch JSON</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+  <div class="container data-container" id='data'></div>
+
+  <script>
+    const validateJson = require('./libs/validate');
+
+    let jsonBtn = document.getElementById('get-json-btn');
+
+    jsonBtn.addEventListener('click', () => {
+      const jsonUrlElem = document.getElementById('json-url');
+      const url = jsonUrlElem.value.trim();
+      fetch(url, {
+        headers: {
+          'Content-Type': 'application/json'
+        }
+      })
+        .then(response => {
+          console.log(response.status);
+          return response.json();
+        })
+        .then(jsonData => {
+          const results = validateJson(jsonData);
+          const elem = document.getElementById('data');
+          const errors = results.errors;
+          let resultsHtml = '';
+          const totalErrors = errors.length.toString();
+          const resultTotals = `<div class='row'>` +
+            `<div class='col'><h2>Total Errors: ${totalErrors}</h2></div>` +
+            `</div>`;
+
+          for(let error of errors) {
+            const list = `<ul class='error-list'>` +
+              `<li class='error-item'><span>Error Type:</span> ${error.keyword}</li>` +
+              `<li class='error-item'><span>Element Path:</span> ${error.dataPath}</li>` +
+              `<li class='error-item'><span>Error Message:</span> ${error.message}</li>` +
+              `</ul>`;
+
+            resultsHtml += `<div class='row'>` +
+              `<div class='col'>${list}</div>`+
+              `</div>` +
+              `<hr />`;
+          }
+
+          elem.innerHTML = resultTotals + resultsHtml;
+        })
+        .catch(error => console.error(error));
+    });
+  </script>
+</body>
+
+</html>

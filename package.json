@@ -1,0 +1,26 @@
+{
+  "name": "desktop-json-validator",
+  "version": "0.1.0",
+  "description": "Playing with Electron to validate JSON",
+  "main": "main.js",
+  "scripts": {
+    "start": "electron ."
+  },
+  "author": "Froilán Irizarry",
+  "license": "MIT",
+  "devDependencies": {
+    "electron": "^2.0.8"
+  },
+  "dependencies": {
+    "ajv": "^6.5.3",
+    "bootstrap": "^4.1.3"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/froi/desktop-json-validator.git"
+  },
+  "bugs": {
+    "url": "https://github.com/froi/desktop-json-validator/issues"
+  },
+  "homepage": "https://github.com/froi/desktop-json-validator#readme"
+}
