@@ -9,16 +9,29 @@
     height: inherit;
 }
 .data-container {
-    margin-top: 110px;
+    /* margin-top: 30px; */
+    height: 470px;
+    overflow: scroll;
+    padding: 10px;
 }
 .get-json-btn {
     background-color: #23C0BA !important;
     border: 1px solid #23C0BA;
     font-weight: bold;
 }
+.error-title {
+    font-size: 3em;
+    font-weight: bold;
+}
 .error-item span {
     font-weight: bold;
 }
-ul {
+.error-data {
     list-style: none;
+}
+
+.json-content {
+    margin-top: 110px;
+    height: 600px;
+    overflow: scroll;
 }
